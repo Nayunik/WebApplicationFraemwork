@@ -21,5 +21,21 @@ namespace WebApplicationFraemwork.Controllers
             // возвращаем представление
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Buy (int id)
+        {
+            ViewBag.BookId = id;
+            return View();
+        }
+
+        [HttpPost]
+        public string Buy (Purchase purchase)
+        {
+            purchase.Date = DateTime.Now;
+            db.Purchases.Add(purchase);
+            db.SaveChanges();
+            return "Ot DUUSHI, " + purchase.Person;
+        }
     }
 }
